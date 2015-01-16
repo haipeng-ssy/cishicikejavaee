@@ -8,12 +8,13 @@
 </head>
 <body>
      <div>
-         <form action="/cishicikejavaee/fileupload">
+         <form action="/cishicikejavaee/fileupload" enctype="multipart/form-data"
+         method="post">
          <table>
              <tr>
-                <td>上传</td>
+                <td>upload</td>
                 <td><input type="file"></td>
-                <td><input type="button" value="上传"></td>
+                <td><input type="submit" value="upload"></td>
              </tr>
          </table>
          </form>

@@ -11,7 +11,8 @@
     <form action="/cishicikejavaee/filedownload">
         <table>
             <tr>
-               <td><input type="button" value="下载该文件"/></td>
+               <td><input type="file"/></td>
+               <td><input type="submit" value="download"/></td>
             </tr>
         </table>
         </form>

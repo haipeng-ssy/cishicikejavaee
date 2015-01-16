@@ -1,4 +1,4 @@
-package com.ceshi.service.implInterface;
+package com.ceshi.service.impl;
 
 import java.util.List;
 
@@ -10,15 +10,15 @@ import com.ceshi.model.Customer;
 
 public class CusManagerImpl implements ICusManager {
 
-	CusHibernate cusDao;
+	CusHibernate cusHibernate;
 	
 
-	public CusHibernate getCusDao() {
-		return cusDao;
+	public CusHibernate getcusHibernate() {
+		return cusHibernate;
 	}
 
-	public void setCusDao(CusHibernate cusDao) {
-		this.cusDao = cusDao;
+	public void setcusHibernate(CusHibernate cusHibernate) {
+		this.cusHibernate = cusHibernate;
 	}
 
 	/*	@Override
@@ -30,13 +30,13 @@ public class CusManagerImpl implements ICusManager {
 	@Override
 	public void insertCus(Customer customer) {
 		// TODO Auto-generated method stub
-		cusDao.save(customer);	
+		cusHibernate.save(customer);	
 	}
 
 	@Override
 	public void deleteCus(Customer customer) {
 		// TODO Auto-generated method stub		
-		cusDao.delete(customer);
+		cusHibernate.delete(customer);
 	}
 
 

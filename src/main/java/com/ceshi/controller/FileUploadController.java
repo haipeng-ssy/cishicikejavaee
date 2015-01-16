@@ -33,7 +33,8 @@ public class FileUploadController {
 	        
 	        String filename = null;
 	        try {
-	            List<FileItem> list = sfu.parseRequest(request);        //解析
+	            @SuppressWarnings("unchecked")
+				List<FileItem> list = sfu.parseRequest(request);        //解析
 	            FileItem item= list.get(0);
 	            filename = item.getName();
 	            if(filename.equals("")) {

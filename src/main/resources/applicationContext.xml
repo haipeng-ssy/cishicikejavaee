@@ -65,13 +65,13 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods" />
 	</aop:config>
 
-	<bean name="cusDao" class="com.ceshi.dao.CusDAO">
+	<bean name="cusHibernate" class="com.ceshi.hibernate.CusHibernate">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
 	<bean name="cusManager" class="com.ceshi.service.impl.CusManagerImpl">
-		<property name="cusDao" ref="cusDao"></property>
+		<property name="cusHibernate" ref="cusHibernate"></property>
 	</bean>
 	
 	<bean id="cusAction" class="com.ceshi.controller.CustomerController">
