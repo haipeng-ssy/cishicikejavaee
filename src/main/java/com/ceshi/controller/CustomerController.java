@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ceshi.interace.ICusManager;
 import com.ceshi.model.Customer;
-import com.ceshi.service.ICusManager;
 
 
 
