@@ -8,11 +8,16 @@
 </head>
 <body>
     <div>
+    <script type="text/javascript">
+               String str=document.getElementById("filename").value;
+               
+    </script>
     <form action="/cishicikejavaee/filedownload">
         <table>
             <tr>
-               <td><input type="file"/></td>
-               <td><input type="submit" value="download"/></td>
+               <td><input type="text" value="D:\workcode\Android\widgetTest\WidgetTest\res\drawable-hdpi\ic_launcher.png"
+                name="filename"/></td>
+               <td><input type="submit" value="download" /></td>
             </tr>
         </table>
         </form>

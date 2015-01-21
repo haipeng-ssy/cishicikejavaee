@@ -9,11 +9,12 @@
 <body>
      <div>
          <form action="/cishicikejavaee/fileupload" enctype="multipart/form-data"
+         name="fileUploadForm"
          method="post">
          <table>
              <tr>
                 <td>upload</td>
-                <td><input type="file"></td>
+                <td><input type="file" name="file"></td>
                 <td><input type="submit" value="upload"></td>
              </tr>
          </table>

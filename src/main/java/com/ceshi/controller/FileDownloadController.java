@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FileDownloadController {
    
+	@SuppressWarnings("unused")
 	@RequestMapping("/filedownload")
 	public String filedown(HttpServletRequest request,HttpServletResponse response){
 		
@@ -21,7 +22,9 @@ public class FileDownloadController {
     	 * attache文件的名称
     	 * 
     	 * */    
-    	String filename = request.getParameter("file_name");
+    	String filename = request.getParameter("filename");
+    	String filepath = request.getPathInfo();
+    	String filepath2 = request.getRealPath("filename");
         
         if (filename == null)
             filename = "";
@@ -35,13 +38,14 @@ public class FileDownloadController {
         int len = 0;
         try {            
             attchname = getAttachName(filename);    //取得附件的名称
-            filename = getRealName(request, filename);    //取得附件的全路径
+//            filename = getRealName(request, filename);    //取得附件的全路径
             
-            if (filename == null) {
-                System.out.println("文件不存在,或者禁止下载");
-                return "false";
-            }
+//            if (filename == null) {
+//                System.out.println("文件不存在,或者禁止下载");
+//                return "false";
+//            }
             attchname = toUtf8String(attchname);    //将文件转码 UTF-8
+//            inStream = new FileInputStream(filename);
             inStream = new FileInputStream(filename);
             response.reset();    //必须reset，否则会出现文件不完整
             
@@ -116,7 +120,8 @@ public class FileDownloadController {
     }
 
     //取得下载文件的真实全路径名称
-    private String getRealName(HttpServletRequest request, String filename) {
+    @SuppressWarnings("deprecation")
+	private String getRealName(HttpServletRequest request, String filename) {
         if (request == null || filename == null)
             return null;
         filename = filename.trim();
