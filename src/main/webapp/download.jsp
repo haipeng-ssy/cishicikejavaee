@@ -21,6 +21,26 @@
             </tr>
         </table>
         </form>
+        
+         <form action="/cishicikejavaee/filedownselect">
+        <table>
+            <tr>
+               <td><input type="file" /></td>
+               <td><input type="submit" value="filedownselect" /></td>
+            </tr>
+        </table>
+        </form>
+        
+         <form action="/cishicikejavaee/filedownlocal">
+        <table>
+            <tr>
+        
+               <td><input type="submit" value="filedownlocal" /></td>
+            </tr>
+        </table>
+        </form>
+        
+        
     </div>
 </body>
 </html>

@@ -1,8 +1,14 @@
 package com.ceshi.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +18,67 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FileDownloadController {
-   
+   @RequestMapping("/filedownselect")
+	public HttpServletResponse download(String path,HttpServletResponse response){
+		try {
+			//path是指欲下载的文件的路径
+			File file = new File(path);
+			//取得文件名
+			String filename = file.getName();
+			//取得文件的后缀
+			String ext = filename.substring(filename.lastIndexOf(".")+1).toUpperCase();
+			
+			//以流的方式获得文件
+			InputStream is = new BufferedInputStream(new FileInputStream(file));
+			byte[] buffer = new byte[is.available()];
+			
+			is.read(buffer);
+			is.close();
+			
+			response.reset();
+			response.addHeader("Content-Disposition", "attachment;filename="+new String(filename));
+			
+			OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("application/octet-stream");
+			toClient.write(buffer);
+			toClient.flush();
+			toClient.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		    e.printStackTrace();
+		}
+		return response;
+	}
+    @RequestMapping("/filedownlocal")
+	public void downloadLocal(HttpServletResponse response) throws FileNotFoundException{
+		String filename = "Operator.doc".toString();
+		InputStream is = new FileInputStream("D:/IMG_20140831_123847.jpg");
+		response.reset();
+		response.setContentType("bin");
+		response.addHeader("Content-Disposition", 
+				"attachment;filename=\""+filename+"\"");
+		
+		byte[] b = new byte[100];
+		int len;
+		try {
+			
+			while ((len = is.read(b))>0) {
+				response.getOutputStream().write(b, 0, len);
+				is.close();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		    e.printStackTrace();
+		}
+	}
+	
+	public void downloadNet (HttpServletResponse response) throws MalformedURLException{
+		int bytesum = 0;
+		int byteread = 0;
+		URL url = new URL("windine.blogdriver.com/logo.gif");
+		
+	}
 	@SuppressWarnings("unused")
 	@RequestMapping("/filedownload")
 	public String filedown(HttpServletRequest request,HttpServletResponse response){
@@ -136,4 +202,7 @@ public class FileDownloadController {
             return null;
         return filepath;
     }
+    
+    
+    
 }
